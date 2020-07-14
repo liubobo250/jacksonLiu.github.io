@@ -1,0 +1,145 @@
+# site name
+prefixName: Fighting-
+siteName: Jackson Liu
+# favicon and site master avatar
+favicon: https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473773662,2917366028&fm=26&gp=0.jpg
+avatar: https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473773662,2917366028&fm=26&gp=0.jpg
+url: https://sakura.jackson.cn
+description: Live your life with passion! With some drive!
+cdn:
+pjax: 1
+# 1开启
+mathjax: 0
+
+notice: jacksonLiu的博客正在使用中...
+lazyloadImg: https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg
+
+menus:
+  首页: { path: /, fa: fa-fort-awesome faa-shake }
+  归档:
+    {
+      path: /archives,
+      fa: fa-archive faa-shake,
+      submenus:
+        {
+          技术: { path: /categories/技术/, fa: fa-code },
+          生活: { path: /categories/生活/, fa: fa-file-text-o },
+          资源: { path: /categories/资源/, fa: fa-cloud-download },
+          随想: { path: /categories/随想/, fa: fa-commenting-o },
+          转载: { path: /categories/转载/, fa: fa-book },
+        },
+    }
+  清单:
+    {
+      path: javascript:;,
+      fa: fa-list-ul faa-vertical,
+      submenus:
+        {
+          书单: { path: /tags/悦读/, fa: fa-th-list faa-bounce },
+          番组: { path: /bangumi/, fa: fa-film faa-vertical },
+          歌单: { path: /music/, fa: fa-headphones },
+          图集: { path: /tags/图集/, fa: fa-photo },
+        },
+    }
+  留言板: { path: /comment/, fa: fa-pencil-square-o faa-tada }
+  友人帐: { path: /links/, fa: fa-link faa-shake }
+  赞赏: { path: /donate/, fa: fa-heart faa-pulse }
+  关于:
+    {
+      path: /,
+      fa: fa-leaf faa-wrench,
+      submenus:
+        {
+          我？: { path: /about/, fa: fa-meetup },
+          主题: { path: /theme-sakura/, fa: iconfont icon-sakura },
+          Lab: { path: /lab/, fa: fa-cogs },
+        },
+    }
+  客户端: { path: /client/, fa: fa-android faa-vertical }
+  RSS: { path: /atom.xml, fa: fa-rss faa-pulse }
+
+# Home page sort type: -1: newer first，1: older first.
+homePageSortType: -1
+# Home page article shown number)
+homeArticleShown: 10
+# 背景图片 更好的修改
+bg:
+  - https://pics.images.ac.cn/image/5f0d0ff6a2b46.html
+  - https://pics.images.ac.cn/image/5f0d0ff6ac2b0.html
+  - https://pics.images.ac.cn/image/5f0d0ff6b1cb0.html
+
+# 背景图片样式 空 原图效果 filter-dim 阴影 filter-grid 横条 filter-dot 点点
+bgclass: filter-dot
+
+# startdash url, title, desc img
+startdash:
+  - {
+      url: https://www.cnblogs.com/jackson1/,
+      title: 博客园,
+      desc: 博主的博客园地址,
+      img: https://pics.images.ac.cn/image/5f0d069a4bd5c.html,
+    }
+  - {
+      url: https://gitee.com/jackson01,
+      title: 码云,
+      desc: 博主的码云地址,
+      img: https://pics.images.ac.cn/image/5f0d05f23ccb3.html,
+    }
+  - {
+      url: https://www.docschina.org/,
+      title: 印记中文,
+      desc: 收集了一些库,
+      img: https://cdn.docschina.org/static/media/docschina-logo.4c5554f1.svg,
+    }
+
+# your site build time or founded date
+siteBuildingTime: 07/14/2020
+
+#social  url, img PC端配置
+social:
+  github:
+    {
+      url: https://github.com/liubobo250,
+      img: https://pics.images.ac.cn/image/5f0d0479cd731.html,
+    }
+
+#social  url, img 移动端配置
+msocial:
+  github: { url: http://github.com/honjun, fa: fa-github, color: 333 }
+  weibo:
+    { url: http://weibo.com/mashirozx?is_all=1, fa: fa-weibo, color: dd4b39 }
+  qq:
+    {
+      url: https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes,
+      fa: fa-qq,
+      color: 25c6fe,
+    }
+
+donate:
+  paypal: https://www.paypal.me/hojuncn
+  alipay: /img/custom/donate/AliPayQR.jpg
+  wechat: /img/custom/donate/WeChanQR.jpg
+  wechatSQ: /img/custom/donate/WeChanSQ.jpg
+
+# 视频地址为https://cdn.jsdelivr.net/gh/honjun/hojun@1.2/Unbroken.mp4，配置如下
+movies:
+  url: https://cdn.jsdelivr.net/gh/honjun/hojun@1.2
+  # 多个视频用逗号隔开，随机获取。支持的格式目前已知MP4,Flv。其他的可以试下，不保证有用
+  name: Unbroken.mp4
+
+aplayer:
+  id: 2660651585
+  server: netease
+  type: playlist
+  fixed: true
+  autoplay: false
+  loop: all
+  order: random
+  preload: auto
+  volume: 0.7
+  mutex: true
+
+# Valine
+valine: true
+v_appId: GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz
+v_appKey: mgOpfzbkHYqU92CV4IDlAUHQ
