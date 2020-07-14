@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Tag: web前端 | Jackson Liu</title>
+  <title itemprop="name">画一只会动的皮卡丘（上）（上） | Jackson Liu</title>
   
     <link rel="shortcut icon" href="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473773662,2917366028&fm=26&gp=0.jpg">
   
@@ -340,97 +340,443 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pics.images.ac.cn/image/5f0d682d6b0d5.html" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://pics.images.ac.cn/image/5f0dbc4a61182.html);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pics.images.ac.cn/image/5f0dbc4a61182.html">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      画一只会动的皮卡丘（上）（上）</h1>
+      <p class="entry-census">
+        <span>
+          <a href="hojun.cn">
+            <img src="https://pics.images.ac.cn/image/5f0dbc4a61182.html">
+          </a>
+        </span>
+        <span>
+          <a href="hojun.cn">JacksonLiu</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-7-14<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">web前端</h1>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="实现的皮卡丘样式如下图："><a href="#实现的皮卡丘样式如下图：" class="headerlink" title="实现的皮卡丘样式如下图："></a>实现的皮卡丘样式如下图：</h1><h1 id="本篇内容-List："><a href="#本篇内容-List：" class="headerlink" title="本篇内容 List："></a>本篇内容 List：</h1><pre><code>tip1--全局样式初始化，配置
+tip2--实现鼻子
+tip3--实现眼睛
+tip4--实现脸颊
+tip5--嘴巴实现
+</code></pre><hr>
+<p><img src="https://img-blog.csdnimg.cn/20200714214531752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjQ5ODEwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="1-先进行页面整体的样式配置"><a href="#1-先进行页面整体的样式配置" class="headerlink" title="1.先进行页面整体的样式配置"></a>1.先进行页面整体的样式配置</h1><h3 id="这里我们要在手机端展示，所以我们尽量整个图形的宽度要小于手机屏幕的最小宽度，代码如下："><a href="#这里我们要在手机端展示，所以我们尽量整个图形的宽度要小于手机屏幕的最小宽度，代码如下：" class="headerlink" title="这里我们要在手机端展示，所以我们尽量整个图形的宽度要小于手机屏幕的最小宽度，代码如下："></a>这里我们要在手机端展示，所以我们尽量整个图形的宽度要小于手机屏幕的最小宽度，代码如下：</h3><pre><code class="css">* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+//设置body样式使内容居中等
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: yellow;
+  border: 1px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//为我们需要画图的主体区域
+.wrapper {
+  width: 100%;
+  height: 220px;
+  position: relative;
+}
+</code></pre>
+<h1 id="2-鼻子的绘画"><a href="#2-鼻子的绘画" class="headerlink" title="2.鼻子的绘画"></a>2.鼻子的绘画</h1><h3 id="利用一个-div-盒子宽高等于-0，然后给予边宽来撑大盒子，再取消不需要的边框，就可以实现一个圆饼的效果，代码如下"><a href="#利用一个-div-盒子宽高等于-0，然后给予边宽来撑大盒子，再取消不需要的边框，就可以实现一个圆饼的效果，代码如下" class="headerlink" title="利用一个 div 盒子宽高等于 0，然后给予边宽来撑大盒子，再取消不需要的边框，就可以实现一个圆饼的效果，代码如下"></a>利用一个 div 盒子宽高等于 0，然后给予边宽来撑大盒子，再取消不需要的边框，就可以实现一个圆饼的效果，代码如下</h3><pre><code class="css">.nose {
+  width: 0;
+  height: 0;
+  border: 11px solid red;
+  border-radius: 12px;
+  border-color: black transparent transparent transparent;
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  transform: translate(-12px);
+}
+</code></pre>
+<h1 id="3-眼睛的绘画"><a href="#3-眼睛的绘画" class="headerlink" title="3.眼睛的绘画"></a>3.眼睛的绘画</h1><h3 id="我们把相同的眼睛代码写在一个-class-中，左右眼不同的样式分别写类名来控制，在测量的时候我们可以以最中间的鼻子基准来写代码，代码如下；"><a href="#我们把相同的眼睛代码写在一个-class-中，左右眼不同的样式分别写类名来控制，在测量的时候我们可以以最中间的鼻子基准来写代码，代码如下；" class="headerlink" title="我们把相同的眼睛代码写在一个 class 中，左右眼不同的样式分别写类名来控制，在测量的时候我们可以以最中间的鼻子基准来写代码，代码如下；"></a>我们把相同的眼睛代码写在一个 class 中，左右眼不同的样式分别写类名来控制，在测量的时候我们可以以最中间的鼻子基准来写代码，代码如下；</h3><pre><code class="css">.eye {
+  width: 49px;
+  height: 49px;
+  background-color: #2e2e2e;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #000;
+}
+.eye::before {
+  content: &quot;&quot;;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  left: 6px;
+  top: -1px;
+  border: 2px solid #000;
+}
+.eye.left {
+  right: 50%;
+  margin-right: 90px;
+}
+.eye.right {
+  left: 50%;
+  margin-left: 90px;
+}
+</code></pre>
+<h1 id="3-脸颊的绘画"><a href="#3-脸颊的绘画" class="headerlink" title="3.脸颊的绘画"></a>3.脸颊的绘画</h1><h3 id="脸颊的绘画不难，我们需要准确测量位置，代码如下："><a href="#脸颊的绘画不难，我们需要准确测量位置，代码如下：" class="headerlink" title="脸颊的绘画不难，我们需要准确测量位置，代码如下："></a>脸颊的绘画不难，我们需要准确测量位置，代码如下：</h3><pre><code class="css">.face {
+  width: 65px;
+  height: 68px;
+  background-color: #f92726;
+  border: 2px solid black;
+  border-radius: 50%;
+  position: absolute;
+  top: 85px;
+}
+.face.left {
+  right: 50%;
+  margin-right: 116px;
+}
+.face.right {
+  left: 50%;
+  margin-left: 116px;
+}
+</code></pre>
+<h1 id="4-嘴的绘画"><a href="#4-嘴的绘画" class="headerlink" title="4.嘴的绘画"></a>4.嘴的绘画</h1><h3 id="为了实现舌头，结构图如下；"><a href="#为了实现舌头，结构图如下；" class="headerlink" title="为了实现舌头，结构图如下；"></a>为了实现舌头，结构图如下；</h3><p><img src="https://img-blog.csdnimg.cn/20200714215853226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjQ5ODEwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre><code class="css">.upperLip {
+  height: 20px;
+  width: 80px;
+  border: 3px solid black;
+  position: absolute;
+  top: 52px;
+  background-color: yellow;
+  z-index: 1;
+}
+.upperLip.left {
+  border-bottom-left-radius: 40px 20px;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-20deg);
+  right: 50%;
+}
+.upperLip.right {
+  left: 50%;
+  border-bottom-right-radius: 40px 20px;
+  border-top: none;
+  border-left: none;
+  transform: rotate(20deg);
+}
+.lowerLip-wrapper {
+  width: 120px;
+  height: 130px;
+
+  position: absolute;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: 56px;
+  overflow: hidden;
+}
+.lowerLip {
+  height: 1000px;
+  width: 120px;
+  border-radius: 200px/800px;
+  border: 2px solid black;
+  background-color: #971818;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+}
+.tongue {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  left: 8px;
+  background-color: #f95364;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
+</code></pre>
+<h1 id="以上就可实现一个皮卡丘了，现附上整个静态皮卡丘代码："><a href="#以上就可实现一个皮卡丘了，现附上整个静态皮卡丘代码：" class="headerlink" title="以上就可实现一个皮卡丘了，现附上整个静态皮卡丘代码："></a>以上就可实现一个皮卡丘了，现附上整个静态皮卡丘代码：</h1><pre><code class="css">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+  &lt;style&gt;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100%;
+      height: 100vh;
+      background-color: yellow;
+      border: 1px solid green;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrapper {
+      width: 100%;
+      height: 220px;
+
+      position: relative;
+    }
+    .nose {
+      width: 0;
+      height: 0;
+      border: 11px solid red;
+      border-radius: 12px;
+      border-color: black transparent transparent transparent;
+      position: absolute;
+      left: 50%;
+      top: 28px;
+      transform: translate(-12px);
+    }
+    .eye {
+      width: 49px;
+      height: 49px;
+      background-color: #2E2E2E;
+      border-radius: 50%;
+      position: absolute;
+      border: 2px solid #000;
+    }
+    .eye::before {
+      content: &#39;&#39;;
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      position: absolute;
+      border-radius: 50%;
+      left: 6px;
+      top: -1px;
+      border: 2px solid #000;
+    }
+    .eye.left {
+      right: 50%;
+      margin-right: 90px
+    }
+    .eye.right {
+      left: 50%;
+      margin-left: 90px
+    }
+    .face {
+      width: 65px;
+      height: 68px;
+      background-color: #f92726;
+      border: 2px solid black;
+      border-radius: 50%;
+      position: absolute;
+      top: 85px;
+    }
+    .face.left {
+      right: 50%;
+      margin-right: 116px;
+    }
+    .face.right {
+      left: 50%;
+      margin-left: 116px;
+    }
+    .upperLip {
+      height: 20px;
+      width: 80px;
+      border: 3px solid black;
+      position: absolute;
+      top: 52px;
+      background-color: yellow;
+      z-index: 1;
+    }
+    .upperLip.left {
+
+      border-bottom-left-radius: 40px 20px;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-20deg);
+      right: 50%;
+    }
+    .upperLip.right {
+      left: 50%;
+      border-bottom-right-radius: 40px 20px;
+      border-top: none;
+      border-left: none;
+      transform: rotate(20deg);
+    }
+    .lowerLip-wrapper {
+      width: 120px;
+      height: 130px;
+
+      position: absolute;
+      left: 50%;
+      margin-left: -60px;
+      margin-top: 56px;
+      overflow: hidden;
+    }
+    .lowerLip {
+      height: 1000px;
+      width: 120px;
+      border-radius: 200px/800px;
+      border: 2px solid black;
+      background-color: #971818;
+      position: absolute;
+      bottom: 0;
+      overflow: hidden
+    }
+    .tongue {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      left: 8px;
+      background-color: #f95364;
+      position: absolute;
+      bottom: 0;
+      z-index: 2;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;wrapper&quot;&gt;
+  &lt;div class=&quot;nose&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;eye left&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;eye right&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;face left&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;face right&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;upperLip left&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;upperLip right&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;lowerLip-wrapper&quot;&gt;
+    &lt;div class=&quot;lowerLip&quot;&gt;
+      &lt;div class=&quot;tongue&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2020/07/14/vueUi01/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473773662,2917366028&fm=26&gp=0.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473773662,2917366028&fm=26&gp=0.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                vueUI轮子（上）</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/07/14/pKaQiu/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://pics.images.ac.cn/image/5f0dbc4a61182.html" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/07/14/pKaQiu/">
-    画一只会动的皮卡丘（上）（上）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-7-14</div>
-    <p>
-    自己用原生实现一个会动的皮卡丘，很可爱</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/07/14/pKaQiu/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/07/14/vueUi01/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473773662,2917366028&amp;fm=26&amp;gp=0.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/07/14/vueUi01/">
-    vueUI轮子（上）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-7-14</div>
-    <p>
-    这是一个自己造轮子的项目VUE UI组件库</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/07/14/vueUi01/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="hojun.cn" class="profile gravatar"><img src="https://pics.images.ac.cn/image/5f0dbc4a61182.html" itemprop="image" alt="JacksonLiu" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="hojun.cn" itemprop="url" rel="author">JacksonLiu</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
