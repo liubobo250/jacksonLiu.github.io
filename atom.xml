@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-07-15T00:27:29.585Z</updated>
+  <updated>2020-07-18T06:20:55.157Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端导航(移动端)</title>
+    <link href="/2020/07/18/%E5%89%8D%E7%AB%AF%E7%AB%99%E7%82%B9%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    <id>/2020/07/18/前端站点移动端/</id>
+    <published>2020-07-18T06:17:46.000Z</published>
+    <updated>2020-07-18T06:20:55.157Z</updated>
+    
+    <summary type="html">
+    
+      自己用html,js,css,vue实现的前端导航站点移动端，是一个不错的小项目。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web前端" scheme="/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="前端项目" scheme="/tags/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>画一只会动的皮卡丘(下）</title>
